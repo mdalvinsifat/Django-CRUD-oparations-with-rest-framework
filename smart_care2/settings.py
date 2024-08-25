@@ -10,8 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-from pathlib import Path
 
+from pathlib import Path
+import environ
+env = environ.Env()
+environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,7 +45,9 @@ INSTALLED_APPS = [
     'patient',
     'service',
     'contact_us',
-     'rest_framework',
+    'rest_framework',
+    'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
@@ -124,6 +129,14 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL ='/media/'
 
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'mdalvinsifat@gmail.com'  # Use your actual Gmail address
+EMAIL_HOST_PASSWORD = 'gtznbexppzbelfpn'  # Use the app password generated
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
